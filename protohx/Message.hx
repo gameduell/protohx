@@ -123,7 +123,8 @@ class Message {
 
     private function writeSingleUnknown(output:PT_OutputStream, tag:PT_UInt,  value:Dynamic):Void {
         WriteUtils.write__TYPE_UINT32(output, tag);
-        switch (tag & 7) {
+        var itag:PT_Int = tag;
+        switch (itag & 7) {
         case WireType.VARINT:
             WriteUtils.write__TYPE_UINT64(output, value);
         case WireType.FIXED_64_BIT:
@@ -155,7 +156,8 @@ class Message {
      */
     function readUnknown(input:PT_InputStream, tag:PT_UInt):Void {
         var value:Dynamic;
-        switch (tag & 7) {
+        var itag:PT_Int = cast tag;
+        switch (itag & 7) {
         case WireType.VARINT:
             value = ReadUtils.read__TYPE_UINT64(input);
         case WireType.FIXED_64_BIT:

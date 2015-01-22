@@ -115,7 +115,7 @@ class ReadUtils {
     }
     public static function read__TYPE_UINT32(input:PT_InputStream):PT_UInt {
         var result:PT_Int = 0;
-        var i:PT_UInt = 0;
+        var i:PT_Int = 0;
         while ( true ) {
             var b:PT_Int = input.readUnsignedByte();
             if (i < 32) {
@@ -157,7 +157,7 @@ class ReadUtils {
     }
     //TODO check types
     public static function read__TYPE_MESSAGE<T:Message>(input:PT_InputStream, message:T):T {
-        var length:PT_UInt = read__TYPE_UINT32(input);
+        var length:PT_Int = read__TYPE_UINT32(input);
         if (input.bytesAvailable < cast length) {
             throw new PT_IOError("Invalid message length: " + length);
         }
@@ -169,7 +169,7 @@ class ReadUtils {
         return message;
     }
     public static function readPackedRepeated<T>(input:PT_InputStream, readFuntion:PT_ReadFunction<T>, value:Array<T>):Void {
-        var length:PT_UInt = read__TYPE_UINT32(input);
+        var length:PT_Int = read__TYPE_UINT32(input);
         if (input.bytesAvailable < cast length) {
             throw new PT_IOError("Invalid message length: " + length);
         }

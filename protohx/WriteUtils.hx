@@ -15,7 +15,8 @@ using haxe.Int64;
 class WriteUtils {
     private static function writeSingleUnknown(output:PT_OutputStream, tag:PT_UInt, value:Dynamic):Void {
         WriteUtils.write__TYPE_UINT32(output, tag);
-        switch (tag & 7) {
+        var itag: PT_Int = tag;
+        switch (itag & 7) {
         case WireType.VARINT:
             WriteUtils.write__TYPE_UINT64(output, value);
         case WireType.FIXED_64_BIT:
@@ -104,13 +105,13 @@ class WriteUtils {
             write__TYPE_UINT32(output, 0);
         }
     }
-    public static function write__TYPE_UINT32(output:PT_OutputStream, value:PT_Int):Void {
+    public static function write__TYPE_UINT32(output:PT_OutputStream, value:PT_UInt):Void {
         while (true) {
             if ((value & (0xffffffff << 7)) == 0) {
                 output.writeByte(value);
                 return;
             } else {
-                output.writeByte((value & 0x7F) | 0x80);
+                output.writeByte(cast((value & 0x7F) | 0x80, Int));
                 value >>>= 7;
             }
         }

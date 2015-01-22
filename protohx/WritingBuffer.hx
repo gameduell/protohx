@@ -73,7 +73,7 @@ class WritingBuffer {
         slices.push(position);
         var beginPosition:PT_UInt = slices[beginSliceIndex + 2];
         slices[beginSliceIndex] = position;
-        WriteUtils.write__TYPE_UINT32(this, position - beginPosition);
+        WriteUtils.write__TYPE_UINT32(this, cast(position - beginPosition, PT_UInt));
         slices[beginSliceIndex + 1] = position;
         slices.push(position);
     }

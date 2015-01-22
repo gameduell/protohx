@@ -753,7 +753,7 @@ public final class Proto2Haxe {
             }
         }
         content.append("\t\twhile (hasBytes(input, bytesAfterSlice)) {\n");
-        content.append("\t\t\tvar tag:PT_UInt = protohx.ReadUtils.read__TYPE_UINT32(input);\n");
+        content.append("\t\t\tvar tag:PT_Int = protohx.ReadUtils.read__TYPE_UINT32(input);\n");
         content.append("\t\t\tswitch (tag >> 3) {\n");
         for (FieldDescriptorProto fdp : scope.proto.getFieldList()) {
             if (fdp.getType() == FieldDescriptorProto.Type.TYPE_GROUP) {
