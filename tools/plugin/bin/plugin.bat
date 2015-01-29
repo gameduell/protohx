@@ -1,2 +1,2 @@
 @cd %~dp0
-@java -jar plugin.jar
+@"%JAVA_HOME%\bin\java.exe" -jar plugin.jar
