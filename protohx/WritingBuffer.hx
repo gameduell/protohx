@@ -74,7 +74,7 @@ class WritingBuffer {
         var beginPosition:PT_UInt = slices[beginSliceIndex + 2];
         slices[beginSliceIndex] = position;
         WriteUtils.write__TYPE_UINT32(this, cast(position - beginPosition, PT_UInt));
-        slices[beginSliceIndex + 1] = position;
+        slices[cast(beginSliceIndex + 1, Int)] = position;
         slices.push(position);
     }
     public function toNormal(output:Output):Void {
