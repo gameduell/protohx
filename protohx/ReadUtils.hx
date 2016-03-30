@@ -155,8 +155,9 @@ class ReadUtils {
         var highNew = ZigZag.decode64high(low, high);
         return Protohx.newInt64(highNew, lowNew);
     }
-    //TODO check types
-    public static function read__TYPE_MESSAGE<T:Message>(input:PT_InputStream, message:T):T {
+
+    //TODO: need to check what to do with this...
+    public static function read__TYPE_MESSAGE(input:PT_InputStream, message:Dynamic):Dynamic {
         var length:PT_Int = read__TYPE_UINT32(input);
         if (input.bytesAvailable < cast length) {
             throw new PT_IOError("Invalid message length: " + length);
